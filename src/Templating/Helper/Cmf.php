@@ -11,9 +11,9 @@
 
 namespace Symfony\Cmf\Bundle\CoreBundle\Templating\Helper;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use Doctrine\ODM\PHPCR\Translation\MissingTranslationException;
+use Doctrine\Persistence\ManagerRegistry;
 use PHPCR\Util\PathHelper;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
 use Symfony\Cmf\Component\Routing\RouteReferrersReadInterface;

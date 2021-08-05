@@ -12,8 +12,8 @@
 namespace Symfony\Cmf\Bundle\CoreBundle\Doctrine\Phpcr;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\Common\Persistence\Event\LoadClassMetadataEventArgs;
 use Doctrine\ODM\PHPCR\Mapping\ClassMetadata;
+use Doctrine\Persistence\Event\LoadClassMetadataEventArgs;
 
 /**
  * Metadata listener for when translations are disabled in PHPCR-ODM to remove
