@@ -31,25 +31,16 @@ use Symfony\Component\Templating\Helper\Helper;
  */
 class Cmf
 {
-    /**
-     * @var ManagerRegistry
-     */
-    private $doctrineRegistry;
+    private ?\Doctrine\Persistence\ManagerRegistry $doctrineRegistry = null;
 
-    /**
-     * @var string
-     */
-    private $doctrineManagerName;
+    private ?string $doctrineManagerName = null;
 
     /**
      * @var DocumentManager
      */
     protected $dm;
 
-    /**
-     * @var AuthorizationCheckerInterface
-     */
-    private $publishWorkflowChecker;
+    private ?\Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface $publishWorkflowChecker = null;
 
     /**
      * @param AuthorizationCheckerInterface $publishWorkflowChecker
@@ -571,7 +562,7 @@ class Cmf
             $anchor = $this->getDm()->getUnitOfWork()->getDocumentId($anchor);
         }
 
-        if (0 !== strpos($path, $anchor)) {
+        if (0 !== strpos($path, (string) $anchor)) {
             throw new \RuntimeException("The anchor path '$anchor' is not a parent of the current path '$path'.");
         }
 
@@ -604,7 +595,7 @@ class Cmf
         }
 
         // check parents
-        if (0 === strpos($parentPath, $anchor)) {
+        if (0 === strpos($parentPath, (string) $anchor)) {
             $parent = $parent->getParent();
             $childNames = $parent->getNodeNames()->getArrayCopy();
             $key = array_search(PathHelper::getNodeName($parentPath), $childNames);
@@ -648,7 +639,7 @@ class Cmf
             $anchor = $this->getDm()->getUnitOfWork()->getDocumentId($anchor);
         }
 
-        if (0 !== strpos($path, $anchor)) {
+        if (0 !== strpos($path, (string) $anchor)) {
             throw new \RuntimeException("The anchor path '$anchor' is not a parent of the current path '$path'.");
         }
 
@@ -665,7 +656,7 @@ class Cmf
         $parentPath = PathHelper::getParentPath($path);
 
         // take the first eligible sibling
-        if (0 === strpos($parentPath, $anchor)) {
+        if (0 === strpos($parentPath, (string) $anchor)) {
             $childNames = $parent->getNodeNames()->getArrayCopy();
             $key = array_search($node->getName(), $childNames);
             $childNames = array_slice($childNames, $key + 1);
@@ -678,7 +669,7 @@ class Cmf
         // take the first eligible parent, traverse up
         while ('/' !== $parentPath) {
             $parent = $parent->getParent();
-            if (false === strpos($parent->getPath(), $anchor)) {
+            if (false === strpos($parent->getPath(), (string) $anchor)) {
                 return;
             }
 

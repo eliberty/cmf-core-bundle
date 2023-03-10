@@ -20,10 +20,7 @@ use Symfony\Component\Templating\Helper\Helper;
  */
 class CmfHelper extends Helper
 {
-    /**
-     * @var Cmf
-     */
-    private $cmf;
+    private \Symfony\Cmf\Bundle\CoreBundle\Templating\Helper\Cmf $cmf;
 
     public function __construct(Cmf $cmf)
     {

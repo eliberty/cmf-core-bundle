@@ -1,5 +1,5 @@
 {
-    "name": "symfony-cmf/core-bundle",
+    "name": "eliberty/cmf-core-bundle",
     "type": "symfony-bundle",
     "description": "Symfony CMF Core Bundle",
     "keywords": [
@@ -13,15 +13,21 @@
             "homepage": "https://github.com/symfony-cmf/CoreBundle/contributors"
         }
     ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://e-liberty.repo.repman.rpstack.com"
+        }
+    ],
     "require": {
-        "php": ">=7.1",
-        "symfony/framework-bundle": "^4.4 || ^5.0",
-        "symfony/security-core": "^4.4 || ^5.0",
+        "php": ">=7.4|^8.0",
+        "symfony/framework-bundle": "^3.4 || ^4.4 || ^5.0",
+        "symfony/security-core": "^3.4 || ^4.4 || ^5.0",
         "twig/twig": "^2.0 || ^3.0"
     },
     "require-dev": {
-        "symfony/security-bundle": "^4.4 || ^5.0",
-        "symfony/phpunit-bridge": "^4.2.2",
+        "symfony/security-bundle": "^3.4 || ^4.4 || ^5.0",
+        "symfony/phpunit-bridge": "^3.3 || ^4.0",
         "mockery/mockery": "^0.9.4",
         "symfony-cmf/routing-bundle": "^2.1.0",
         "symfony-cmf/testing": "^3.0.0",
@@ -34,7 +40,10 @@
         "symfony/form": "^4.4 || ^5.0",
         "symfony/translation": "^4.4 || ^5.0",
         "symfony/validator": "^4.4 || ^5.0",
-        "symfony/asset": "^4.4 || ^5.0"
+        "symfony/asset": "^4.4 || ^5.0",
+        "rector/rector": "^0.15.21",
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpcompatibility/php-compatibility": "^9.3"
     },
     "suggest": {
         "symfony/twig-bundle": "To get access to the CMF twig extension (^2.8 || ^3.3 || ^4.0)",
@@ -59,5 +68,9 @@
         "branch-alias": {
             "dev-master": "2.2-dev"
         }
+    },
+    "scripts": {
+        "lint:rector": "./vendor/bin/rector --dry-run",
+        "sniffer:php8": "./vendor/bin/phpcs -p ./src --standard=vendor/phpcompatibility/php-compatibility/PHPCompatibility --runtime-set testVersion 8.2"
     }
 }

@@ -23,10 +23,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
  */
 class PublishedVoter implements VoterInterface
 {
-    /**
-     * @var PublishWorkflowChecker
-     */
-    private $publishWorkflowChecker;
+    private \Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker $publishWorkflowChecker;
 
     /**
      * @param PublishWorkflowChecker $publishWorkflowChecker

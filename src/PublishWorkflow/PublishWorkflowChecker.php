@@ -39,7 +39,7 @@ class PublishWorkflowChecker implements AuthorizationCheckerInterface
      * This attribute means the user is allowed to see this content, either
      * because it is published or because he is granted the bypassingRole.
      */
-    const VIEW_ATTRIBUTE = 'VIEW';
+    public const VIEW_ATTRIBUTE = 'VIEW';
 
     /**
      * This attribute means the content is available for viewing by anonymous
@@ -49,7 +49,7 @@ class PublishWorkflowChecker implements AuthorizationCheckerInterface
      * The bypass role is handled by the workflow checker, the individual
      * voters should treat VIEW and VIEW_ANONYMOUS the same.
      */
-    const VIEW_ANONYMOUS_ATTRIBUTE = 'VIEW_ANONYMOUS';
+    public const VIEW_ANONYMOUS_ATTRIBUTE = 'VIEW_ANONYMOUS';
 
     /**
      * @var bool|string Role allowed to bypass the published check if the
@@ -57,20 +57,11 @@ class PublishWorkflowChecker implements AuthorizationCheckerInterface
      */
     private $bypassingRole;
 
-    /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
+    private \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface $tokenStorage;
 
-    /**
-     * @var AuthorizationCheckerInterface
-     */
-    private $authorizationChecker;
+    private \Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface $authorizationChecker;
 
-    /**
-     * @var AccessDecisionManagerInterface
-     */
-    private $accessDecisionManager;
+    private \Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface $accessDecisionManager;
 
     /**
      * @var TokenInterface

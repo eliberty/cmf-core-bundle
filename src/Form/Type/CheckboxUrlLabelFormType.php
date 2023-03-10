@@ -56,9 +56,9 @@ class CheckboxUrlLabelFormType extends AbstractType
         $routes = $options['routes'];
         $paths = [];
         foreach ($routes as $key => $route) {
-            $name = isset($route['name']) ? $route['name'] : null;
-            $parameters = isset($route['parameters']) ? $route['parameters'] : [];
-            $referenceType = isset($route['referenceType']) ? $route['referenceType'] : UrlGeneratorInterface::ABSOLUTE_PATH;
+            $name = $route['name'] ?? null;
+            $parameters = $route['parameters'] ?? [];
+            $referenceType = $route['referenceType'] ?? UrlGeneratorInterface::ABSOLUTE_PATH;
             $paths[$key] = $this->router->generate($name, $parameters, $referenceType);
         }
         $view->vars['paths'] = $paths;
